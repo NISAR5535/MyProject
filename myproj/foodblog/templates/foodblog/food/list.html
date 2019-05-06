@@ -1,0 +1,20 @@
+{% extends "foodblog/base.html" %}
+{% block title %}My FoodBlog Application{% endblock %}
+{% block content %}
+    <h1>My FoodBlog</h1>
+    {% for food in foods %}
+        <h2>
+            <a href="{{ food.get_absolute_url }}">
+            {{ food.title }}
+            </a>
+        </h2>
+        <p class="date">
+            Published {{ food.publish }} by {{ food.author }}
+        </p>
+        {{ food.desc|truncatewords:30|linebreaks }}
+    {% endfor %}
+    <br><hr><br>
+    {% include "pagination.html" with page=page_obj %}
+
+
+{% endblock %}
